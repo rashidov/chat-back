@@ -3,11 +3,11 @@ class Messages {
     this.messages = options.messages
   }
 
-  set create (token) {  
+  create (token) {  
     this.messages.set(token, [])
   }
 
-  set add (message) {
+  add (message) {
     const token = message.token
     const data = message.data
     const prevMessages = this.messages.get(token)
@@ -24,7 +24,7 @@ class Messages {
     return this.messages.get(token)
   }
 
-  get size () {
+  size () {
     return this.messages.size
   }
 }
@@ -35,7 +35,7 @@ const messages = new Messages({
 
 module.exports = messages
 
-// структура объекта message
+// структура объекта message (не актуально)
 // {
 //   token: 'room token',
 //   data: [

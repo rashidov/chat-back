@@ -1,13 +1,14 @@
 class Rooms {
   constructor (options) {
     this.rooms = options.rooms
+    this.meta = options.meta
   }
 
-  set create (room) {
+  create (room) {
     this.rooms.set(room.token, {...room.data})
   }
 
-  add (room_token, user_token) {
+  add (room_token, user_token) {                  // не актуальный метод
     const prevRoom = this.rooms.get(room_token)
     prevRoom.users.push(user_token)
     this.rooms.delete(room_token)
@@ -18,22 +19,33 @@ class Rooms {
     return this.rooms.get(token)
   }
 
-  get size () {
+  size () {
     return this.rooms.size
+  }
+
+  addUserInRoom (room_token, user_token) {
+    const prevMetaRoomUsers = this.meta.room_users.get(room_token)
+    prevMetaRoomUsers.push(user_token)
+    this.meta.room_users.delete(room_token)
+    this.meta.room_users.set(room_token, user_token)
   }
 }
 
 const rooms = new Rooms({
-  rooms: new Map()
+  rooms: new Map(),
+  meta: {
+    room_users: new Map()
+  }
 })
 
 module.exports = rooms
 
 // объект room
 // {
-//   token: 'md5(title room)',
-//   data: {
-//     name: 'title room',
-//     users: ['user1 token', 'user2 token']
-//   }
+//   num: 0,
+//   name: 'Бухгалтерия',
+//   filial: 'РЦ ХАнская',
+//   type: 'corporate',
+//   roomToken: 'room1',
+//   messages: []
 // }

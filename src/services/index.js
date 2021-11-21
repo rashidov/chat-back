@@ -4,7 +4,8 @@ const message_service = require('./message')
 
 module.exports = {
   user: {
-    create: user => user_service.create(user)
+    create: user => user_service.create(user),
+    getUser: token => user_service.getUser(token)
   },
   room: {
     create: room => room_service.create(room)

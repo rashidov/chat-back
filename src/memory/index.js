@@ -7,7 +7,7 @@ module.exports = {
     // сущности
     // token - пользователя
     // user - объект пользователя
-    add: user => user.add(user),
+    add: user => users.add(user),
     get: token => users.user(token),
     size: () => users.size()
   },
@@ -15,7 +15,7 @@ module.exports = {
     // сущности
     // token - комнаты 
     // room - объект комнаты
-    create: room => room.create(room),
+    create: room => rooms.create(room),
     add: (room_token, user_token) => rooms.add(room_token, user_token),
     get: token => rooms.room(token),
     size: () => rooms.size()
